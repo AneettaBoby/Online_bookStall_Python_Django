@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add New Products Here..!</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'save_product' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                      <label for="exampleSelectGender">Select Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="cat_name">
+                          <option>select</option>
+                            {% for d in cat %}
+                          <option>{{d.category_name}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName2">Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="Name" name="p_name">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputName2">Author</label>
+                      <input type="text" class="form-control" id="exampleInputName3" placeholder="Author" name="auth">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputName2">Language</label>
+                      <input type="text" class="form-control" id="exampleInputName4" placeholder="Language" name="lang">
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName2">Publisher</label>
+                      <input type="text" class="form-control" id="exampleInputName6" placeholder="Publisher" name="pub">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName2">Publication Date</label>
+                      <input type="text" class="form-control" id="exampleInputName7" placeholder="Publication Date" name="pub_date">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName2">Pages</label>
+                      <input type="text" class="form-control" id="exampleInputName8" placeholder="page" name="pg">
+                    </div>
+
+
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputEmail3">Email address</label>-->
+<!--                      <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputPassword4">Password</label>-->
+<!--                      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputCity1">City</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">-->
+<!--                    </div>-->
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="desc"></textarea>
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputprice">Price</label>
+                      <input type="text" class="form-control" id="exampleInputprice" placeholder="Price" name="pri">
+                    </div>
+                      <div class="form-group">
+                      <label>Upload product image</label><br><br>
+                      <input type="file"  class="form_control" name="p_image">
+<!--                      <div class="input-group col-xs-12">-->
+<!--                        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                        </span>-->
+<!--                      </div>-->
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

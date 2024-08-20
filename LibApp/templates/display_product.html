@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="table-responsive pt-3">
+                  <table class="table table-striped project-orders-table">
+                    <thead>
+                      <tr>
+                       <th>Id</th>
+                        <th>Category </th>
+                        <th>ProductName</th>
+                        <th>Author</th>
+                        <th>Language</th>
+
+                          <th>Publisher</th>
+                          <th>Publication_date</th>
+                          <th>Pages</th>
+                          <th>Price</th>
+                          <th>Description</th>
+                          <th>ProductImage</th>
+                          <th>Status</th>
+                          <th>options</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in data %}
+                      <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.Category}} </td>
+                        <td>{{i.ProductName}}</td>
+                        <td>{{i.Author}}</td>
+                        <td>{{i.Language}}</td>
+
+                          <td>{{i.Publisher}}</td>
+                          <td>{{i.Publication_date}}</td>
+                          <td>{{i.Pages}}</td>
+                          <td>{{i.Price}}</td>
+                          <td>{{i.Description}}</td>
+                          <td><img src="{{i.ProductImage.url}}"></td>
+                          <td>{{ i.status }}</td>
+
+
+                          <td>
+                                <div class="d-flex align-items-center">
+                                    <a href="{% url 'approve_product' i.id %}">
+                                        <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                            Approve
+                                            <i class="typcn typcn-edit btn-icon-append"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{% url 'reject_product' i.id %}">
+                                        <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                                            Reject
+                                            <i class="typcn typcn-delete btn-icon-append"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+<!--                        <td>-->
+<!--                          <div class="d-flex align-items-center">-->
+<!--                              <a href="{% url 'Edit_product_page' pro_id=i.id %}">-->
+<!--                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">-->
+<!--                              Edit..-->
+<!--                              <i class="typcn typcn-edit btn-icon-append"></i>-->
+<!--                            </button>-->
+<!--                                  </a>-->
+<!--                              <a href="{% url 'delete_page' del_id=i.id%}">-->
+<!--                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">-->
+<!--                              Delete-->
+<!--                              <i class="typcn typcn-delete-outline btn-icon-append"></i>-->
+<!--                            </button>-->
+<!--                                  </a>-->
+<!--                          </div>-->
+<!--                        </td>-->
+                      </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+	{% for i in messages %}
+		{% if i.tags == 'warning' %}
+			<script>
+				swal('{{i}}','','warning')
+			</script>
+		{% elif i.tags == 'error' %}
+			<script>
+				swal('{{i}}','','error')
+			</script>
+		{% elif i.tags == 'info' %}
+			<script>
+				swal('{{i}}','','info')
+			</script>
+		{% else %}
+			<script>
+				swal('{{i}}','','success')
+			</script>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+
+
+</body>
+</html>
+{% endblock %}
